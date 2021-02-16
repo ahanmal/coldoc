@@ -14,12 +14,15 @@
 // Bring in Bootstrap
 //
 
+
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-table/src/bootstrap-table";
-
+@import "bootstrap-darkmode/darktheme";
 //
 // Custom styles
 //
+
+
 
 pre > code {
     color: #e83e8c;
@@ -40,6 +43,6 @@ pre > code {
 
     width: 100%;
     height: 100%;
-    background:rgba(255,255,255,1);
+    background:black;
     z-index: 1000;
 }

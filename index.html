@@ -10,6 +10,12 @@
 </head>
 
 <body>
+  <script src="https://unpkg.com/bootstrap-darkmode@0.7.0/dist/theme.js"></script>
+  <script>
+    const themeConfig = new ThemeConfig();
+    // place customizations here
+    themeConfig.initTheme();
+  </script>
   <div id="trial-start">
     <div class="row h-100">
       <div class="col-sm-12 my-auto">
@@ -17,7 +23,7 @@
           <h2>Press the spacebar to start.</h2>
         </div>
       </div>
-   </div>
+    </div>
   </div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">ColDoc</a>
@@ -27,38 +33,38 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/index.html">Tutorial</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/index.html?trial=a1">Trial A1</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/index.html?trial=a2">Trial A2</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/index.html?trial=a3">Trial A3</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/index.html?trial=b1">Trial B1</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/index.html?trial=b2">Trial B2</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/index.html?trial=b3">Trial B3</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/ocaml.html?trial=C1">Trial C1</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/ocaml.html?trial=C2">Trial C2</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/ocaml.html?trial=C3">Trial C3</a>
-      </li>
-  </div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/index.html">Tutorial</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html?trial=a1">Trial A1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html?trial=a2">Trial A2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html?trial=a3">Trial A3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html?trial=b1">Trial B1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html?trial=b2">Trial B2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html?trial=b3">Trial B3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ocaml.html?trial=C1">Trial C1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ocaml.html?trial=C2">Trial C2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ocaml.html?trial=C3">Trial C3</a>
+        </li>
+    </div>
   </nav>
 
   <div class="container-fluid">
@@ -66,7 +72,6 @@
     <div id="top-text"></div>
 
     <table id="table" classes="table table-bordered" data-detail-view="true"
-      data-show-fullscreen="true"
       data-icons='{"detailOpen": "fa-caret-right", "detailClose": "fa-caret-down", "fullscreen": "fa-arrows-alt"}'
       data-detail-view-by-click="true" data-sort-name="gh_count" data-filter-control-visible="false"
       data-sort-order="desc">
