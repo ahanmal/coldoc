@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "ocaml.css",
+	"sources": [
+		"../../scss/ocaml.scss"
+	],
+	"sourcesContent": [
+		"\n#trial-start\n{\n    position:fixed;\n    padding:0;\n    margin:0;\n\n    top:0;\n    left:0;\n\n    width: 100%;\n    height: 100%;\n    background:rgba(255,255,255,1);\n    z-index: 1000;\n}\n\n.btn-success {\n    color: white;\n    background-color: green;\n    float: right;\n}\n\n.btn-danger {\n    color: white;\n    background-color: red;\n    float: right;\n}"
+	],
+	"names": [],
+	"mappings": "AACA,AAAA,YAAY,AACZ,CACI,QAAQ,CAAC,KAAK,CACd,OAAO,CAAC,CAAC,CACT,MAAM,CAAC,CAAC,CAER,GAAG,CAAC,CAAC,CACL,IAAI,CAAC,CAAC,CAEN,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,UAAU,CAAC,IAAmB,CAC9B,OAAO,CAAE,IAAI,CAChB,AAED,AAAA,YAAY,AAAC,CACT,KAAK,CAAE,KAAK,CACZ,gBAAgB,CAAE,KAAK,CACvB,KAAK,CAAE,KAAK,CACf,AAED,AAAA,WAAW,AAAC,CACR,KAAK,CAAE,KAAK,CACZ,gBAAgB,CAAE,GAAG,CACrB,KAAK,CAAE,KAAK,CACf"
+}
