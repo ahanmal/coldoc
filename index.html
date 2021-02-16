@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/86587b1001.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/starter.css">
+  <title>List</title>
+</head>
+
+<body>
+  <div id="trial-start">
+    <div class="row h-100">
+      <div class="col-sm-12 my-auto">
+        <div class="text-center">
+          <h2>Press the spacebar to start.</h2>
+        </div>
+      </div>
+   </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">ColDoc</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/index.html">Tutorial</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html?trial=a1">Trial A1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html?trial=a2">Trial A2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html?trial=a3">Trial A3</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html?trial=b1">Trial B1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html?trial=b2">Trial B2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html?trial=b3">Trial B3</a>
+      </li>
+  </div>
+  </nav>
+
+  <div class="container-fluid">
+    <h1 id="name"></h1>
+    <div id="top-text"></div>
+
+    <table id="table" classes="table table-bordered" data-detail-view="true"
+      data-show-fullscreen="true"
+      data-icons='{"detailOpen": "fa-caret-right", "detailClose": "fa-caret-down", "fullscreen": "fa-arrows-alt"}'
+      data-detail-view-by-click="true" data-sort-name="gh_count" data-filter-control-visible="false"
+      data-sort-order="desc">
+      <thead>
+        <tr>
+          <th data-field="tags" data-sortable="true">Tags</th>
+          <th data-field="name" data-sortable="true">Name</th>
+          <th data-field="arg_a" data-sortable="true">Argument 1</th>
+          <th data-field="arg_b" data-sortable="true">Argument 2</th>
+          <th data-field="arg_c" data-sortable="true">Argument 3</th>
+          <th data-field="arg_d" data-sortable="true">Argument 4</th>
+          <th data-field="return" data-sortable="true">Return Type</th>
+          <th data-field="gh_count" data-sortable="true" data-formatter="numberFormatter">Usage Count</th>
+          <th data-field="description" data-sortable="true" data-visible="false">Description</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+
+  <script>
+    function numberFormatter(value, row) {
+      return value.toLocaleString('en');
+    }
+  </script>
+  <script type="module" src="assets/js/starter.js"></script>
+</body>
+
+</html>
