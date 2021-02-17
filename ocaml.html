@@ -631,8 +631,7 @@
       }
 
       $('pre').each(function (i, obj) {
-         if (i == 0)
-         {
+         if (i == 0) {
             return;
          }
 
@@ -640,22 +639,21 @@
       });
 
       $(".accept-btn").click(function (e) {
-         debugger;
          let name = $(e.target).parent().children('span').attr('id').replace('VAL', '');
-        if (name == window.correct_name) {
+         if (name == window.correct_name) {
             let endTime = (new Date()).getTime();
             let diff = endTime - window.startTime;
             let elapsedSeconds = diff / 1000.0;
             alert(`Elapsed: ${elapsedSeconds} s\nMisses: ${window.misses}\nInspects: ${window.inspected}`);
-        } else {
+         } else {
             $(e.target).text('Try Again');
             $(e.target).attr('disabled', true);
             $(e.target).removeClass('btn-success');
             $(e.target).addClass('btn-danger');
             window.misses += 1;
-        }
+         }
 
-    });
+      });
       let test = trial.substring(1, 2);
       switch (test) {
          case '1':

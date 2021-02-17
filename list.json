@@ -2,7 +2,7 @@
     "module_name": "List",
     "top_html": "<code>module List: sig .. end</code><br>List operations. <br><br> Some functions are flagged as not tail-recursive. A tail-recursive function uses constant stack space, while a non-tail-recursive function uses stack space proportional to the length of its list argument, which can be a problem with very long lists. When the function takes several list arguments, an approximate formula giving stack usage (in some unspecified constant unit) is shown in parentheses. <br><br> The above considerations can usually be ignored if your lists are not longer than about 10000 elements.<pre><code>\ntype 'a t = 'a list = \n| []\n| :: of 'a * 'a list\n</code></pre>An alias for the type of lists.",
     "categories": {
-        "Base": "#F94144",
+        "Core": "#F94144",
         "Iterator": "#F3722C",
         "2 List Iterator": "#F8961E",
         "List Scanning": "#90BE6D",
@@ -14,7 +14,7 @@
     },
     "functions": [
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "length",
             "arg_a": "'a list",
             "arg_b": "",
@@ -26,7 +26,7 @@
             "gh_count": 78852
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "compare_lengths",
             "arg_a": "'a list",
             "arg_b": "'blist",
@@ -38,7 +38,7 @@
             "gh_count": 66
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "compare_length_with",
             "arg_a": "'a list",
             "arg_b": "int",
@@ -50,7 +50,7 @@
             "gh_count": 92
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "cons",
             "arg_a": "‘a",
             "arg_b": "‘a list",
@@ -62,7 +62,7 @@
             "gh_count": 2958
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "hd",
             "arg_a": "'a list",
             "arg_b": "",
@@ -74,7 +74,7 @@
             "gh_count": 32102
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "tl",
             "arg_a": "'a list",
             "arg_b": "",
@@ -86,7 +86,7 @@
             "gh_count": 20304
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "nth",
             "arg_a": "'a list",
             "arg_b": "int",
@@ -98,7 +98,7 @@
             "gh_count": 17099
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "nth_opt",
             "arg_a": "'a list",
             "arg_b": "int",
@@ -110,7 +110,7 @@
             "gh_count": 227
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "rev",
             "arg_a": "'a list",
             "arg_b": "",
@@ -122,7 +122,7 @@
             "gh_count": 103351
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "init",
             "arg_a": "int",
             "arg_b": "(int -> ‘a)",
@@ -134,7 +134,7 @@
             "gh_count": 9566
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "append",
             "arg_a": "'a list",
             "arg_b": "'a list",
@@ -146,7 +146,7 @@
             "gh_count": 10423
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "rev_append",
             "arg_a": "'a list",
             "arg_b": "'a list",
@@ -158,7 +158,7 @@
             "gh_count": 9015
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "concat",
             "arg_a": "'a list list",
             "arg_b": "",
@@ -170,7 +170,7 @@
             "gh_count": 13804
         },
         {
-            "tags": "Base",
+            "tags": "Core",
             "name": "flatten",
             "arg_a": "'a list list",
             "arg_b": "",
