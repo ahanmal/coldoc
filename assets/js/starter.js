@@ -50,7 +50,7 @@ window.addEventListener('load', (event) => {
         case '2':
             window.correct_name = 'map2';
             break;
-        case '3':
+          case '3':
             window.correct_name = 'mem';
             break;
     }
@@ -80,7 +80,7 @@ $.getJSON("/list.json", data => {
         data: data.functions,
         classes: 'table table-bordered',
         detailFormatter: detailFormatter,
-        search: window.search
+        search: window.search != null ? window.search : true
     });
 });
 
