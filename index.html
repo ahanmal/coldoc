@@ -20,7 +20,7 @@
     </div>
   </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">ColDoc</a>
+    <a class="navbar-brand" href="/index.html">ColDoc</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,9 +28,6 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/index.html">Tutorial</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="/index.html?trial=a1">Trial A1</a>
         </li>
@@ -65,26 +62,39 @@
     <h1 id="name"></h1>
     <div id="top-text"></div>
 
-    <table id="table" classes="table table-bordered" data-detail-view="true"
-      data-icons='{"detailOpen": "fa-caret-right", "detailClose": "fa-caret-down", "fullscreen": "fa-arrows-alt"}'
-      data-detail-view-by-click="true" data-sort-name="gh_count" data-filter-control-visible="false"
-      data-sort-order="desc">
+    <table id="table">
       <thead>
         <tr>
           <th data-field="tags" data-sortable="true">Tags</th>
           <th data-field="name" data-sortable="true">Name</th>
-          <th data-field="arg_a" data-sortable="true">Argument 1</th>
-          <th data-field="arg_b" data-sortable="true">Argument 2</th>
-          <th data-field="arg_c" data-sortable="true">Argument 3</th>
-          <th data-field="arg_d" data-sortable="true">Argument 4</th>
-          <th data-field="return" data-sortable="true">Return Type</th>
-          <th data-field="gh_count" data-sortable="true" data-formatter="numberFormatter">Usage Count</th>
+          <th data-field="arg_a" data-sortable="true" data-sorter="typeSorter">Argument 1</th>
+          <th data-field="arg_b" data-sortable="true" data-sorter="typeSorter">Argument 2</th>
+          <th data-field="arg_c" data-sortable="true" data-sorter="typeSorter">Argument 3</th>
+          <th data-field="arg_d" data-sortable="true" data-sorter="typeSorter">Argument 4</th>
+          <th data-field="return" data-sortable="true" data-sorter="typeSorter">Return Type</th>
+          <th data-field="gh_count" data-sortable="true" data-formatter="numberFormatter"  data-title-tooltip="Sourced from Github Code Search.">Usage Count</th>
           <th data-field="description" data-sortable="true" data-visible="false">Description</th>
         </tr>
       </thead>
     </table>
   </div>
 
+  <script>
+    function typeSorter(a, b) {
+      var aa = a.replace(/\<code\>/g, '').replace(/\<\/code\>/g, '').replace(/[^a-zA-Z\d\s:]/gm, '');
+      var aa_seps = (a.match(/->/g) || []).length;
+      var bb = b.replace(/\<code\>/g, '').replace(/\<\/code\>/g, '').replace(/[^a-zA-Z\d\s:]/gm, '');
+      var bb_seps = (b.match(/->/g) || []).length;
+
+      if (aa_seps != bb_seps)
+      {
+        return aa_seps - bb_seps;
+      }
+      aa = aa === '' ? ' ' : aa;
+      bb = bb === '' ? ' ' : bb;
+      return ( ( aa == bb ) ? 0 : ( ( aa > bb ) ? 1 : -1 ) );
+    }
+  </script>
 
   <script>
     function numberFormatter(value, row) {

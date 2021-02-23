@@ -712,7 +712,7 @@
         {
             "tags": "Functional Iterators",
             "name": "of_seq",
-            "arg_a": "a Seq.t",
+            "arg_a": "'a Seq.t",
             "arg_b": "",
             "arg_c": "",
             "arg_d": "",

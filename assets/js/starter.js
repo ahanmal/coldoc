@@ -1,14 +1,11 @@
-
 import "../../node_modules/jquery/dist/jquery.js"
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import "../../node_modules/bootstrap-table/dist/bootstrap-table.min.js";
 import "../../node_modules/marked/lib/marked.js"
+import "../../node_modules/bootstrap-table/dist/extensions/multiple-sort/bootstrap-table-multiple-sort.js"
 
 
-function detailFormatter(index, row) {
-    return `${row.description} <button type="button" class="btn btn-success float-right accept-btn">Accept</button>`;
-}
-
+// Utility Functions
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -18,16 +15,11 @@ function hexToRgb(hex) {
     } : null;
 }
 
-document.body.onkeypress = function (e) {
-    if (e.keyCode == 32) {
-        $('#trial-start').remove();
-        document.body.onkeypress = null;
-        window.startTime = (new Date()).getTime();
-        window.misses = 0;
-        window.inspected = 0;
-        return false;
-    }
-};
+function detailFormatter(index, row) {
+    return `${row.description} <button type="button" class="btn btn-success float-right accept-btn">Accept</button>`;
+}
+
+// Trial Logic
 
 window.addEventListener('load', (event) => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -50,39 +42,22 @@ window.addEventListener('load', (event) => {
         case '2':
             window.correct_name = 'map2';
             break;
-          case '3':
+        case '3':
             window.correct_name = 'mem';
             break;
     }
 });
 
-
-var $table = $('#table');
-$.getJSON("/list.json", data => {
-
-    data.functions.map(el => {
-        let backgroundRGB = hexToRgb(data.categories[el.tags]);
-        let textColor = ((backgroundRGB.r * 0.299 + backgroundRGB.g * 0.587 + backgroundRGB.b * 0.114) > 186) ? "black" : "white";
-
-        el.tags = `<span class="badge bg-primary" style="color: ${textColor}; background-color: ${data.categories[el.tags]} !important">${el.tags}</span>`
-        el.name = `<code>${el.name}</code>`;
-        el.arg_a = `<code>${el.arg_a}</code>`;
-        el.arg_b = `<code>${el.arg_b}</code>`;
-        el.arg_c = `<code>${el.arg_c}</code>`;
-        el.arg_d = `<code>${el.arg_d}</code>`;
-        el.return = `<code>${el.return}</code>`;
-    });
-
-    $('#name').html(`Module <code>${data.module_name}</code>`);
-    $('#top-text').html(data.top_html);
-
-    $table.bootstrapTable({
-        data: data.functions,
-        classes: 'table table-bordered',
-        detailFormatter: detailFormatter,
-        search: window.search != null ? window.search : true
-    });
-});
+document.body.onkeypress = function (e) {
+    if (e.keyCode == 32) {
+        $('#trial-start').remove();
+        document.body.onkeypress = null;
+        window.startTime = (new Date()).getTime();
+        window.misses = 0;
+        window.inspected = 0;
+        return false;
+    }
+};
 
 $('#table').on('expand-row.bs.table', function (index, row, detail) {
     window.inspected += 1;
@@ -103,6 +78,107 @@ $('#table').on('expand-row.bs.table', function (index, row, detail) {
 
     });
 });
+
+// Table Logic
+
+var $table = $('#table');
+
+let argumentSortPriority = [
+    {
+        "sortName": "arg_a",
+        "sortOrder": "asc"
+    },
+    {
+        "sortName": "arg_b",
+        "sortOrder": "asc"
+    },
+    {
+        "sortName": "arg_c",
+        "sortOrder": "asc"
+    },
+    {
+        "sortName": "arg_d",
+        "sortOrder": "asc"
+    }
+];
+
+function buttons() {
+    return {
+        btnArgSort: {
+            text: 'Sort By Arguments',
+            event: function () {
+                $table.bootstrapTable('multiSort', argumentSortPriority);
+                $table.bootstrapTable('multipleSort');
+
+            },
+            attributes: {
+                title: 'Sort By Arguments'
+            }
+        },
+        btnUsageSort: {
+            text: 'Sort By Usage',
+            event: function () {
+                $table.bootstrapTable('multiSort', [
+                    {
+                        "sortName": "gh_count",
+                        "sortOrder": "desc"
+                    }
+                ]);
+                $table.bootstrapTable('multipleSort');
+            },
+            attributes: {
+                title: 'Sort By Usage'
+            }
+        },
+    };
+}
+
+$.getJSON("/list.json", data => {
+
+    data.functions.map(el => {
+        let backgroundRGB = hexToRgb(data.categories[el.tags]);
+        let textColor = ((backgroundRGB.r * 0.299 + backgroundRGB.g * 0.587 + backgroundRGB.b * 0.114) > 186) ? "black" : "white";
+
+        el.tags = `<span class="badge bg-primary" style="color: ${textColor}; background-color: ${data.categories[el.tags]} !important">${el.tags}</span>`
+        el.name = `<code>${el.name}</code>`;
+        el.arg_a = `<code>${el.arg_a == "" ? " " : el.arg_a}</code>`;
+        el.arg_b = `<code>${el.arg_b == "" ? " " : el.arg_b}</code>`;
+        el.arg_c = `<code>${el.arg_c == "" ? " " : el.arg_c}</code>`;
+        el.arg_d = `<code>${el.arg_d == "" ? " " : el.arg_d}</code>`;
+        el.return = `<code>${el.return}</code>`;
+    });
+
+    $('#name').html(`Module <code>${data.module_name}</code>`);
+    $('#top-text').html(data.top_html);
+
+
+    $table.bootstrapTable({
+        data: data.functions,
+        classes: 'table table-bordered',
+        icons: {"detailOpen": "fa-caret-right", "detailClose": "fa-caret-down", "fullscreen": "fa-arrows-alt"},
+        buttonsAlign: 'left',
+        detailView: true,
+        detailViewByClick: true,
+        detailFormatter: detailFormatter,
+        search: window.search != null ? window.search : true,
+        showMultiSort: true,
+        multiSortStrictSort: true,
+        sortPriority: argumentSortPriority,
+        showButtonText: true,
+        buttons: buttons
+    });
+
+    $('[title="Multiple Sort"]').html("Multiple Sort Editor");
+    $('[title="Multiple Sort"]').removeClass("btn-secondary").addClass("btn-primary");
+    $('[title="Multiple Sort"]').parent().prepend($('[title="Multiple Sort"]'));
+    $('[title="Multiple Sort"]').parent().removeClass('btn-group');
+    $('[title="Multiple Sort"]').parent().children().css('margin-right', '10px');
+
+    
+
+});
+
+
 
 
 
