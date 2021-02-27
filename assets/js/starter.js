@@ -130,6 +130,34 @@ function buttons() {
                 title: 'Sort By Usage'
             }
         },
+        btnTagSort: {
+            text: 'Sort By Tags',
+            event: function () {
+                $table.bootstrapTable('multiSort', [
+                    {
+                        "sortName": "tags",
+                        "sortOrder": "desc"
+                    }
+                ]);
+                $table.bootstrapTable('multipleSort');
+            },
+            attributes: {
+                title: 'Sort By Tags'
+            }
+        },
+        btnToggleDescs: {
+            text: 'Show Usage Descriptions',
+            event: function () {
+                $table.bootstrapTable('getData').forEach( (el, index) => {
+                    $table.bootstrapTable('toggleDetailView', index);
+                });
+                let $btn = $("button[name='btnToggleDescs']");
+                $btn.html($btn.html().includes('Show') ? "Hide Usage Descriptions" : "Show Usage Descriptions");
+            },
+            attributes: {
+                title: 'Show Usage Descriptions'
+            }
+        },
     };
 }
 
@@ -150,7 +178,6 @@ $.getJSON("/list.json", data => {
 
     $('#name').html(`Module <code>${data.module_name}</code>`);
     $('#top-text').html(data.top_html);
-
 
     $table.bootstrapTable({
         data: data.functions,
@@ -173,8 +200,6 @@ $.getJSON("/list.json", data => {
     $('[title="Multiple Sort"]').parent().prepend($('[title="Multiple Sort"]'));
     $('[title="Multiple Sort"]').parent().removeClass('btn-group');
     $('[title="Multiple Sort"]').parent().children().css('margin-right', '10px');
-
-    
 
 });
 
