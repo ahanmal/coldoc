@@ -45,6 +45,15 @@ window.addEventListener('load', (event) => {
         case '3':
             window.correct_name = 'mem';
             break;
+        case '4':
+            window.correct_name = 'contains_from';
+            break;
+        case '5':
+            window.correct_name = 'split_on_char';
+            break;
+        case '6':
+            window.correct_name = 'index_from_opt';
+            break;
     }
 });
 
@@ -98,6 +107,10 @@ let argumentSortPriority = [
     },
     {
         "sortName": "arg_d",
+        "sortOrder": "asc"
+    },
+    {
+        "sortName": "arg_e",
         "sortOrder": "asc"
     }
 ];
@@ -161,7 +174,8 @@ function buttons() {
     };
 }
 
-$.getJSON("/list.json", data => {
+let json_endpoint = window.location.href.includes('string') ? '/string.json' : '/list.json'
+$.getJSON(json_endpoint, data => {
 
     data.functions.map(el => {
         let backgroundRGB = hexToRgb(data.categories[el.tags]);
@@ -173,6 +187,9 @@ $.getJSON("/list.json", data => {
         el.arg_b = `<code>${el.arg_b == "" ? " " : el.arg_b}</code>`;
         el.arg_c = `<code>${el.arg_c == "" ? " " : el.arg_c}</code>`;
         el.arg_d = `<code>${el.arg_d == "" ? " " : el.arg_d}</code>`;
+        if (el.arg_e) {
+            el.arg_e = `<code>${el.arg_e == "" ? " " : el.arg_e}</code>`;
+        }
         el.return = `<code>${el.return}</code>`;
     });
 
